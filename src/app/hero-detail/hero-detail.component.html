@@ -1,0 +1,19 @@
+<!-- if confused, check heroes component -->
+
+<!-- new version of heroDetails, is now component based-->
+<h1>New component based hero details</h1>
+<div *ngIf="selectedHeroDetails">
+
+  <h2>{{selectedHeroDetails.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedHeroDetails.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedHeroDetails.name" placeholder="name" />
+    </label>
+  </div>
+
+</div>
+
+<button (click)="save()">save</button>
+
+<button (click)="goBack()">go back</button>

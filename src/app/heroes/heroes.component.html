@@ -1,0 +1,74 @@
+<h2>My Heroes</h2>
+
+<div>
+    <label>Hero name:
+        <!-- grabs the user's input and sets it to "heroName" -->
+        <input #heroName />
+    </label>
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(heroName.value); heroName.value=''">
+        add
+    </button>
+</div>
+
+<ul class="heroes">
+
+    <!--
+        The Angular class binding makes it easy to add and remove a CSS class 
+        conditionally. Just add [class.some-css-class]="some-condition" to 
+        the element you want to style, below is the old version
+    
+    <li *ngFor="let hero of heroes" 
+            (click)="onSelect(hero)" 
+            [class.selected]="hero === selectedHero">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </li>
+    -->
+    <li *ngFor="let hero of heroes">
+        <a routerLink="/detail/{{hero.id}}">
+            <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
+        <button class="delete" title="delete hero"
+                (click)="delete(hero)">x</button>
+    </li>
+</ul>
+
+<!-- 
+    this was improved further by making it a link to another page
+
+    this will call the hero-detail.component.ts file, using the app-hero-detail 
+    selector. It then passes the selectedHeroDetails data/variable which is set to
+    the selectedHero (the selectedHero data is sent by hero.component.ts)
+
+<app-hero-detail [selectedHeroDetails]="selectedHero"></app-hero-detail>
+-->
+
+<!-- this is the old version, not the component based version of heroDetails
+     to see the old version, uncomment anything to do with selectedHero in 
+     heroes.component.ts
+<h1>Old version of heroDetails</h1>
+<div *ngIf="selectedHero">
+
+    
+        The word uppercase in the interpolation binding, 
+        right after the pipe operator ( | ), activates the built-in UppercasePipe. 
+        Pipes are a good way to format strings, currency amounts, 
+        dates and other display data
+    
+    <h2>{{selectedHero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div>
+        <label>name:
+
+            
+                [(ngModel)] is Angular's two-way data binding syntax. 
+                Here it binds the hero.name property to the HTML textbox 
+                so that data can flow in both directions: from the hero.name 
+                property to the textbox, and from the textbox back to the hero.name
+            
+            <input [(ngModel)]="selectedHero.name" placeholder="name" />
+        </label>
+    </div>
+</div>
+-->
